@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GameStoreMVC.Domain.Entites
+namespace GameStoreMVC.Domain.Entities
 {
-    class Game
+    public class Game
     {
         public int GameId { get; set; }
         public string Name { get; set; }

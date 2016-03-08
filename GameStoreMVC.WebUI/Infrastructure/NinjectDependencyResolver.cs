@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using GameStoreMVC.Domain.Abstract;
+using GameStoreMVC.Domain.Entities;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Ninject;
 using Moq;
-
 
 namespace GameStoreMVC.WebUI.Infrastructure
 {
@@ -31,7 +32,14 @@ namespace GameStoreMVC.WebUI.Infrastructure
 
         private void AddBindings()
         {
-            // Здесь размещаются привязки
+            Mock<IGameRepository> mock = new Mock<IGameRepository>();
+            mock.Setup(m => m.Games).Returns(new List<Game>
+            {
+                new Game { Name = "Don't Starve", Price = 349 },
+                new Game { Name = "Don't Starve Together", Price = 419 },
+                new Game { Name = "Portal", Price = 249 }
+            });
+                kernel.Bind<IGameRepository>().ToConstant(mock.Object);
         }
     }
 }
